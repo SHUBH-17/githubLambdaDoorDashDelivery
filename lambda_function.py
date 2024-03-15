@@ -29,7 +29,6 @@ def lambda_handler(event, context):
         # Ensure consistent date format
         for item in data:
           item['date'] = datetime.strptime(item['date'], '%Y-%m-%d').date()
-          print(item['date'])
 
         # Convert the parsed data to a Pandas DataFrame
         df = pd.DataFrame(data)
