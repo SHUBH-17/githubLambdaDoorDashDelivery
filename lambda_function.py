@@ -31,7 +31,7 @@ def lambda_handler(event, context):
         # Convert the filtered DataFrame to JSON string
         json_string = filtered_df.to_json(orient='records')
 
-        print(json_string)
+        print("Filtered Data: ",json_string)
         
         # Define the destination bucket name and file name in S3
         destination_bucket_name = 'doordash-target-zn-sm'
