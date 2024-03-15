@@ -34,7 +34,7 @@ def lambda_handler(event, context):
         print(json_string)
         
         # Define the destination bucket name and file name in S3
-        destination_bucket_name = 'doordash-target-zn'
+        destination_bucket_name = 'doordash-target-zn-sm'
         destination_file_name = 'delivered_records.json'
 
         print(destination_bucket_name)
