@@ -1,6 +1,7 @@
 import pandas as pd
 import boto3
 import json
+from datetime import datetime
 
 s3 = boto3.client('s3')
 sns_client = boto3.client('sns')
@@ -22,8 +23,15 @@ def lambda_handler(event, context):
         response = s3.get_object(Bucket=source_bucket_name, Key=source_file_name)
         json_data = response['Body'].read().decode('utf-8')
         
-        # Convert the JSON data to a Pandas DataFrame
-        df = pd.read_json(json_data)
+        # Parse the JSON data
+        data = json.loads(json_data)
+
+        # Ensure consistent date format
+        for item in data:
+          item['date'] = datetime.strptime(item['date'], '%Y-%m-%d').date()
+
+        # Convert the parsed data to a Pandas DataFrame
+        df = pd.DataFrame(data)
         
         # Filter the records based on certain criteria
         filtered_df = df[df['status'] == 'delivered']
