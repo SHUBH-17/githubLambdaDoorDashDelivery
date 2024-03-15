@@ -35,10 +35,10 @@ def lambda_handler(event, context):
         
         # Define the destination bucket name and file name in S3
         destination_bucket_name = 'doordash-target-zn'
-        destination_bucket_name = 'delivered_records.json'
+        destination_file_name = 'delivered_records.json'
 
         print(destination_bucket_name)
-        print(destination_bucket_name)
+        print(destination_file_name)
         
         # Upload the JSON string to the destination bucket
         s3.put_object(Bucket=destination_bucket_name, Key=destination_file_name, Body=json_string)
