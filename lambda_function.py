@@ -32,9 +32,13 @@ def lambda_handler(event, context):
 
         # Convert the parsed data to a Pandas DataFrame
         df = pd.DataFrame(data)
+
+        print(df)
         
         # Filter the records based on certain criteria
         filtered_df = df[df['status'] == 'delivered']
+
+        print(filtered_df)
         
         # Convert the filtered DataFrame to JSON string
         json_string = filtered_df.to_json(orient='records')
