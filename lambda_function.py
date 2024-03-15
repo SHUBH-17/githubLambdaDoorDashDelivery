@@ -42,7 +42,7 @@ def lambda_handler(event, context):
         
         # Upload the JSON string to the destination bucket
         s3.put_object(Bucket=destination_bucket_name, Key=destination_file_name, Body=json_string)
-        message = "Filtered records have been written to {}/{}".format("s3://"+destination_bucket_name+"/"+destination_file_name)
+        message = "Filtered records have been written to {}".format("s3://"+destination_bucket_name+"/"+destination_file_name)
 		
         respone = sns_client.publish(Subject="SUCCESS - Daily Data Processing",TargetArn=sns_arn, Message=message, MessageStructure='text')
 		
